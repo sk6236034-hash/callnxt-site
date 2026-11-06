@@ -53,10 +53,18 @@ p { margin: 0; }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: var(--ink); text-decoration: none; }
 .brand img { width: 32px; height: 32px; border-radius: 9px; }
-.top nav { display: flex; align-items: center; gap: 28px; }
-.top nav a { color: var(--muted); text-decoration: none; font-size: 15.5px; font-weight: 500; }
-.top nav a:hover { color: var(--ink); }
+.top nav { display: flex; align-items: center; gap: 14px; }
+.menu { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.7); border: 1px solid var(--line); }
+.menu a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 999px; transition: background .15s, color .15s; white-space: nowrap; }
+.menu a:hover { color: var(--ink); background: var(--lav); }
+.menu a.on { color: #fff; background: var(--indigo); }
 .top nav .btn { padding: 10px 18px; font-size: 15px; color: #fff; }
+.menu-btn { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); cursor: pointer;
+  padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+.menu-btn span { width: 20px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* hero */
 .hero { position: relative; overflow: hidden; padding: 56px 0 80px; }
@@ -198,6 +206,14 @@ footer a:hover { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .float { animation: none; } html { scroll-behavior: auto; } }
 
 /* responsive */
+section[id], footer[id] { scroll-margin-top: 84px; }
+@media (max-width: 1120px) {
+  .menu-btn { display: flex; }
+  .menu { display: none; position: absolute; left: 12px; right: 12px; top: 74px; flex-direction: column; align-items: stretch; gap: 6px;
+    padding: 10px; border-radius: 20px; background: var(--paper); box-shadow: 0 20px 40px -12px rgba(42,30,20,.3); }
+  .menu.open { display: flex; }
+  .menu a { font-size: 17px; padding: 14px 18px; border-radius: 14px; background: var(--bg); color: var(--ink); }
+}
 @media (max-width: 960px) {
   .hero .wrap, .feature, .video, .duo { grid-template-columns: 1fr; }
   .feature.flip .media { order: 0; }
@@ -205,7 +221,6 @@ footer a:hover { color: var(--ink); }
   .steps { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
   .more { grid-template-columns: 1fr 1fr; }
   .strip .wrap { grid-template-columns: 1fr 1fr; }
-  .top nav a:not(.btn) { display: none; }
   .video { padding: 40px 28px; }
   footer .wrap { grid-template-columns: 1fr; }
 }
@@ -305,8 +320,11 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
   <div class="wrap">
     <a class="brand" href="#"><img src="/static/icons/icon-192.png" alt="">CallNxt</a>
     <nav>
-      <a href="#how">How it works</a><a href="#features">Features</a><a href="#video">Video</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <div class="menu" id="menu">
+        <a href="#how">How it works</a><a href="#features">Features</a><a href="#video">Video</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#contact">Contact us</a>
+      </div>
       <a class="btn btn-wa" href="https://wa.me/918700876740?text=Hi%2C%20I%27d%20like%20a%20free%20demo%20of%20CallNxt%20for%20my%20clinic." target="_blank" rel="noopener">Book a demo</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
@@ -508,6 +526,29 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
   var top = document.getElementById('top');
   var onScroll = function () { top.classList.toggle('scrolled', window.scrollY > 8); };
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  var menu = document.getElementById('menu'), menuBtn = document.querySelector('.menu-btn');
+  var setMenu = function (open) {
+    menu.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  menuBtn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.top')) setMenu(false); });
+
+  var links = menu.querySelectorAll('a[href^="#"]');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+  }
+
   var els = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function (entries) {
