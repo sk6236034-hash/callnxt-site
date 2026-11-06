@@ -154,10 +154,10 @@ section.block { padding: 110px 0; }
 .video video { width: 100%; border-radius: 18px; background: #000; aspect-ratio: 16/9; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
 
 /* pricing + founder */
-.duo { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+.duo { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 640px; margin-inline: auto; }
 .price { background: var(--paper); border: 2px solid var(--indigo); border-radius: var(--radius); padding: 40px; position: relative; }
 .price .badge { position: absolute; top: -14px; left: 40px; background: var(--indigo); color: #fff; font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 99px; }
-.price .big { font-family: 'Fraunces', Georgia, serif; font-size: 54px; font-weight: 600; line-height: 1; margin: 18px 0 6px; }
+.price .big { font-family: 'Poppins', 'Segoe UI', sans-serif; letter-spacing: -0.02em; font-size: 54px; font-weight: 600; line-height: 1; margin: 18px 0 6px; }
 .price ul { list-style: none; padding: 0; margin: 24px 0 30px; display: grid; gap: 10px; }
 .price li { display: flex; gap: 10px; }
 .price li svg { width: 20px; height: 20px; color: var(--green); flex: none; margin-top: 4px; }
@@ -462,12 +462,6 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
             <li><svg><use href="#check"/></svg>We set it up with you, including the door QR poster</li>
           </ul>
           <a class="btn btn-wa" href="https://wa.me/918700876740?text=Hi%2C%20I%27d%20like%20a%20free%20demo%20of%20CallNxt%20for%20my%20clinic." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Start with a free demo</a>
-        </div>
-        <div class="founder reveal">
-          <p class="kicker">Built in Delhi</p>
-          <blockquote>Made for the solo doctor who runs a busy OPD and still answers every call.</blockquote>
-          <p class="muted" style="margin-top:16px">Talk to us directly on WhatsApp. We'll show you CallNxt on your own phone in 15 minutes.</p>
-          <div class="who"><span class="av">S</span><div><b>Sunil Kumar</b><br><span class="muted">Founder, CallNxt</span></div></div>
         </div>
       </div>
     </div>
