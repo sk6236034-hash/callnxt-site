@@ -295,10 +295,59 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
   .illus .device.mini img { border-radius: 18px; }
   .illus .float.f1 { bottom: 60px; }
 }
+
+/* analytics card (sample numbers) */
+.dash { width: 100%; max-width: 440px; background: #fff; border-radius: 22px; box-shadow: var(--shadow); padding: 22px; font-size: 14px; }
+.dash .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.dash .top-row b { font-size: 16px; }
+.dash .pill { font-size: 12px; font-weight: 600; background: var(--lav); color: var(--indigo-dark); padding: 4px 10px; border-radius: 99px; }
+.dash .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.dash .kpi { background: var(--bg); border-radius: 14px; padding: 10px 12px; }
+.dash .kpi span { display: block; color: var(--muted); font-size: 12px; }
+.dash .kpi strong { font-size: 20px; letter-spacing: -0.02em; }
+.dash h4 { font-size: 13px; color: var(--muted); font-weight: 600; margin: 16px 0 8px; }
+.dash .bars { display: flex; align-items: flex-end; gap: 6px; height: 74px; }
+.dash .bars i { flex: 1; background: var(--indigo); border-radius: 5px 5px 2px 2px; opacity: .85; }
+.dash .bars i.lo { opacity: .35; }
+.dash .hrs { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; margin-top: 4px; }
+.dash .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.dash ol { margin: 0; padding-left: 18px; }
+.dash ol li { margin: 2px 0; }
+.dash .money div { display: flex; justify-content: space-between; margin: 3px 0; }
+.dash .money .due { color: #B42318; }
+.dash .note { margin-top: 14px; background: var(--mint); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
+.sample { position: absolute; left: 18px; top: 16px; font-size: 12px; font-weight: 600; color: var(--muted); background: rgba(255,255,255,.75); padding: 3px 10px; border-radius: 99px; }
+
+/* WhatsApp follow-up mock */
+.chat { width: 100%; max-width: 330px; background: #EFE7DE; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); font-size: 14px; }
+.chat .bar { background: #0B6E5F; color: #fff; padding: 12px 16px; font-weight: 600; }
+.chat .bar small { display: block; font-weight: 400; opacity: .8; font-size: 12px; }
+.chat .body { padding: 14px; display: grid; gap: 8px; }
+.chat .msg { background: #fff; border-radius: 12px; padding: 9px 12px; max-width: 86%; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+.chat .msg.me { background: #D9FDD3; justify-self: end; }
+.chat .btns { display: grid; gap: 1px; background: #E3E3E3; border-radius: 12px; overflow: hidden; max-width: 86%; }
+.chat .btns span { background: #fff; color: #0B7A6C; text-align: center; padding: 8px; font-weight: 500; }
+.chat .day { justify-self: center; font-size: 12px; background: #fff; border-radius: 8px; padding: 3px 10px; color: var(--muted); }
+.media .stack { display: grid; gap: 16px; justify-items: center; width: 100%; }
+.callist { width: 100%; max-width: 330px; background: #fff; border-radius: 18px; box-shadow: var(--shadow); padding: 14px 16px; font-size: 14px; }
+.callist b { display: block; margin-bottom: 6px; }
+.callist div { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.callist div span:first-child { color: var(--ink); }
+@media (max-width: 640px) {
+  .dash { padding: 16px; }
+  .dash .kpi strong { font-size: 17px; }
+  .dash .split { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20h16M7 16v-5M12 16V6M17 16v-8"/></g></symbol>
+  <symbol id="pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></g></symbol>
+  <symbol id="msg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14.5h4"/></g></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></symbol>
+  <symbol id="list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/></g></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></g></symbol>
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-3-.2-.3a8.2 8.2 0 1 1 6.9 3.8Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
   <symbol id="check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
   <symbol id="clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
@@ -425,7 +474,8 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
           <ul>
             <li><svg><use href="#check"/></svg><span><b>Type two letters</b> to pick medicines, tests and diagnoses.</span></li>
             <li><svg><use href="#check"/></svg><span><b>Hindi lines</b> for dosage on the prescription, if you want them.</span></li>
-            <li><svg><use href="#check"/></svg><span><b>A clean PDF</b> with your registration details, sent on WhatsApp.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>A clean PDF</b> on your letterhead, with your logo and signature, sent on WhatsApp.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Saved templates</b> for common diagnoses, and medicine courses that end on their own date.</span></li>
           </ul>
         </div>
         <div class="media mint"><div class="phone-sm"><img src="/media/d_typeahead.webp" alt="Typing a medicine name" loading="lazy"></div><img class="paper" src="/media/rx_pdf.webp" alt="Prescription PDF" loading="lazy"></div>
@@ -443,11 +493,92 @@ h1 { font-size: clamp(36px, 5.2vw, 58px); }
         <div class="media amber"><div class="pair"><div class="phone-sm"><img src="/media/d_alerts.webp" alt="Alerts on the doctor screen" loading="lazy"></div><div class="phone-sm"><img src="/media/d_history.webp" alt="Patient history" loading="lazy"></div></div></div>
       </div>
 
+
+      <div class="feature flip reveal">
+        <div>
+          <h3>See how your clinic is doing</h3>
+          <ul>
+            <li><svg><use href="#check"/></svg><span><b>Patients seen</b> today, this week or this month, new and returning.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Busy hours</b> and the average wait, so you can plan your OPD.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Money</b> collected by UPI and cash, and fees still pending.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Top diagnoses</b>, no-shows, referrals and how follow-ups went.</span></li>
+          </ul>
+        </div>
+        <div class="media lav">
+          <span class="sample">Sample numbers</span>
+          <div class="dash" role="img" aria-label="Clinic report with sample numbers">
+            <div class="top-row"><b>This month</b><span class="pill">Reports</span></div>
+            <div class="kpis">
+              <div class="kpi"><span>Patients seen</span><strong>412</strong></div>
+              <div class="kpi"><span>New</span><strong>96</strong></div>
+              <div class="kpi"><span>Avg wait</span><strong>14 min</strong></div>
+            </div>
+            <h4>Busy hours</h4>
+            <div class="bars"><i class="lo" style="height:30%"></i><i style="height:70%"></i><i style="height:100%"></i><i style="height:82%"></i><i class="lo" style="height:40%"></i><i class="lo" style="height:18%"></i><i class="lo" style="height:35%"></i><i style="height:76%"></i><i style="height:90%"></i><i class="lo" style="height:45%"></i></div>
+            <div class="hrs"><span>9 am</span><span>1 pm</span><span>5 pm</span><span>8 pm</span></div>
+            <div class="split">
+              <div><h4>Top diagnoses</h4><ol><li>Viral fever</li><li>Hypertension</li><li>Diabetes</li></ol></div>
+              <div class="money"><h4>Fees</h4><div><span>UPI</span><b>&#8377;1,12,300</b></div><div><span>Cash</span><b>&#8377;52,500</b></div><div class="due"><span>Pending</span><b>&#8377;2,400</b></div></div>
+            </div>
+            <div class="note">Busiest: Monday mornings. 7 in 10 patients answered their follow-up check-in.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature reveal">
+        <div>
+          <h3>Vitals at the desk, urgent cases first</h3>
+          <ul>
+            <li><svg><use href="#check"/></svg><span><b>Your assistant enters vitals</b>: BP, pulse, SpO<sub>2</sub>, temperature, weight and sugar.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Your own limits</b>: a reading outside them marks the patient "Urgent" with the reason.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>A notification on your phone</b> for urgent vitals, emergencies and waiting chats, even with CallNxt closed.</span></li>
+          </ul>
+        </div>
+        <div class="media mint"><div class="pair"><div class="phone-sm"><img src="/media/d_vitals.webp" alt="Assistant entering vitals" loading="lazy"></div><div class="phone-sm"><img src="/media/d_urgent.webp" alt="Patient marked urgent on the queue" loading="lazy"></div></div></div>
+      </div>
+
+      <div class="feature flip reveal">
+        <div>
+          <h3>No patient slips through</h3>
+          <ul>
+            <li><svg><use href="#check"/></svg><span><b>Follow-up check-in</b> on WhatsApp after the visit: Better, About the same or Worse.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Missed follow-ups</b>: a call list of patients whose next visit date has passed.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Test reports awaited</b>: see which ordered tests haven't come back yet.</span></li>
+            <li><svg><use href="#check"/></svg><span><b>Visit-day reminder</b> in the morning, and a "doctor is running late" message in one tap.</span></li>
+          </ul>
+        </div>
+        <div class="media amber">
+          <div class="stack">
+            <div class="chat" role="img" aria-label="Follow-up check-in on WhatsApp">
+              <div class="bar">Sharma Clinic<small>online</small></div>
+              <div class="body">
+                <span class="day">After the visit</span>
+                <div class="msg">Hi Rohit, how are you feeling now after your visit?</div>
+                <div class="btns"><span>Better</span><span>About the same</span><span>Worse</span></div>
+                <div class="msg me">Better</div>
+              </div>
+            </div>
+            <div class="callist"><b>Missed follow-ups</b>
+              <div><span>Meena Joshi</span><span>due 2 Nov</span></div>
+              <div><span>Anjali Gupta</span><span>due 4 Nov</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="more">
         <div class="reveal"><svg><use href="#rupee"/></svg><b>Fees by UPI or cash</b><p>The fee goes to your own UPI ID, or is paid at the clinic in cash or by UPI. Receipts with GSTIN.</p></div>
         <div class="reveal"><svg><use href="#img"/></svg><b>Reports and follow-ups</b><p>Patients send lab reports and X-ray photos; you send certificates and referrals back.</p></div>
         <div class="reveal"><svg><use href="#globe"/></svg><b>Your own clinic page</b><p>Timings, fee and address, with a "Book on WhatsApp" button.</p></div>
         <div class="reveal"><svg><use href="#team"/></svg><b>Assistant login</b><p>Your assistant runs the queue and payments without seeing clinical notes.</p></div>
+        <div class="reveal"><svg><use href="#msg"/></svg><b>Chats come to you</b><p>If the bot can't understand a patient, the chat comes to you or your assistant to answer.</p></div>
+        <div class="reveal"><svg><use href="#team"/></svg><b>Family on one number</b><p>Book and keep records for parents and children from one WhatsApp number.</p></div>
+        <div class="reveal"><svg><use href="#cal"/></svg><b>Your timings, your rules</b><p>Sessions, holidays and token limits. Same-day tokens or wait-from-home, as you choose.</p></div>
+        <div class="reveal"><svg><use href="#list"/></svg><b>Find any patient</b><p>Search by name or number and see visits, medicines, reports and notes.</p></div>
+        <div class="reveal"><svg><use href="#down"/></svg><b>Your data is yours</b><p>Download everything as Excel-ready files at any time. Daily encrypted backups.</p></div>
+        <div class="reveal"><svg><use href="#shield"/></svg><b>Privacy built in</b><p>Patients can ask to see or delete their data on WhatsApp, as India's DPDP Act requires.</p></div>
+        <div class="reveal"><svg><use href="#lang"/></svg><b>English, Hindi, Hinglish</b><p>The WhatsApp bot understands typed messages like "token chahiye" and "mera number kab aayega".</p></div>
+        <div class="reveal"><svg><use href="#wifi"/></svg><b>Works when the internet doesn't</b><p>Keep calling patients and writing prescriptions; it all syncs when you're back online.</p></div>
       </div>
     </div>
   </section>
