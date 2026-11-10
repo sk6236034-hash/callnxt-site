@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CallNxt Verify · Check a shop&#x27;s real number before you pay</title>
+<meta name="description" content="Check if a phone number, Instagram account or payment ID really belongs to a shop before you pay.">
+
+<link rel="icon" href="/static/icons/favicon-32.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/verify/verify.css">
+</head><body><div class="wrap">
+<header class="top"><a class="brand" href="/verify/"><img src="/media/callnxt-mark.svg" alt=""><span>Call<span class="nxt">Nxt</span> Verify</span></a>
+<span class="tag">Free scam check</span></header>
+<section><h1>Got a number or account claiming to be a shop?</h1>
+<p class="lede">Check it before you pay. Paste the phone number, @username, payment ID or website you were sent.</p></section>
+<section class="card check">
+<form id="f"><label for="q">Paste what you were sent</label>
+<div class="row"><input id="q" autocomplete="off" placeholder="e.g. +91 98xxx xxxxx or @shopname"><button type="submit">Check</button></div></form>
+<div id="out" aria-live="polite"></div>
+<p class="hint">The check runs on your phone. What you type is not sent anywhere.</p></section>
+<section class="card"><h2>Shops on CallNxt Verify</h2><div class="shops"><a class="shop" href="/verify/meera-silks-demo/"><b>Meera Silks</b><span>Demo · @meerasilks.demo</span></a><a class="shop" href="/verify/batik-ayu-demo/"><b>Batik Ayu</b><span>Demo · @batikayu.demo</span></a><a class="shop" href="/verify/moda-lu-demo/"><b>Moda Lu</b><span>Demo · @modalu.demo</span></a></div></section>
+<section class="card"><h2>Do you sell on Instagram?</h2>
+<p style="margin:0">Copycat accounts post fake WhatsApp numbers under sellers' reels. A free verify page lets your buyers check your real number before they pay.</p>
+<div><a class="btn" href="/verify/setup/">Get your free page</a></div></section>
+<footer><div>CallNxt Verify is run by SUKUME TECH, New Delhi · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@callnxt.in">hello@callnxt.in</a></div>
+<div>Each shop page lists details the shop gave us after we checked it owns the account. It is not a guarantee about the shop's products.</div></footer>
+</div>
+<script>window.SHOPS = [{"slug": "meera-silks-demo", "name": "Meera Silks", "demo": true, "country": "IN", "handles": ["meerasilks.demo", "meerasilks.demo.backup"], "phones": ["+91 90000 00001"], "sites": ["meera-silks.example"], "payments": ["meerasilks@demoupi"], "rules": ["We never post our number in other people's comments.", "We never ask for an advance from a number that is not listed here.", "Our only backup account is listed on this page."], "updated": "2026-11-09"}, {"slug": "batik-ayu-demo", "name": "Batik Ayu", "demo": true, "country": "ID", "handles": ["batikayu.demo"], "phones": ["0812 0000 0001"], "sites": ["batik-ayu.example"], "payments": ["batikayu@demodana"], "rules": ["Kami tidak pernah meminta transfer ke rekening pribadi lain.", "We never ask you to pay a number that is not listed here."], "updated": "2026-11-09"}, {"slug": "moda-lu-demo", "name": "Moda Lu", "demo": true, "country": "BR", "handles": ["modalu.demo"], "phones": ["(11) 90000-0001"], "sites": ["moda-lu.example"], "payments": ["pix@moda-lu.example"], "rules": ["Nunca pedimos PIX por mensagem de outra conta.", "We never ask you to pay a PIX key that is not listed here."], "updated": "2026-11-09"}];</script>
+<script src="/verify/verify.js"></script>
+<script>
+(function () {
+  const V = window.CnxVerify, shops = window.SHOPS, out = document.getElementById("out"), q = document.getElementById("q");
+  function run() {
+    const v = q.value.trim();
+    if (!v) { out.innerHTML = ""; return; }
+    const res = shops.map((s) => [s, V.checkShop(v, s)]);
+    const hit = res.find(([, r]) => r.status === "official");
+    const copy = res.find(([, r]) => r.status === "copycat");
+    if (hit) { out.innerHTML = V.resultHTML(hit[1], hit[0]) + `<p class="hint"><a href="/verify/${hit[0].slug}/">See all of ${V.esc(hit[0].name)}'s official contacts</a></p>`; return; }
+    if (copy) { out.innerHTML = V.resultHTML(copy[1], copy[0]); return; }
+    if (res.every(([, r]) => r.status === "unknown")) { out.innerHTML = V.resultHTML(res[0][1], res[0][0]); return; }
+    out.innerHTML = `<div class="result warn" role="status"><div class="icon">?</div><div><h3>Not listed by any shop on CallNxt Verify</h3>
+      <p>That doesn't prove it's safe or a scam. Ask the shop on its own Instagram account (the one with the most followers and history) before you pay, and never pay a number someone else sent you in the comments.</p></div></div>`;
+  }
+  document.getElementById("f").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+})();
+</script></body></html>

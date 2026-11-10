@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Get your free verify page · CallNxt Verify</title>
+<meta name="description" content="A free page where your buyers check your real WhatsApp number and accounts before they pay.">
+
+<link rel="icon" href="/static/icons/favicon-32.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/verify/verify.css">
+</head><body><div class="wrap">
+<header class="top"><a class="brand" href="/verify/"><img src="/media/callnxt-mark.svg" alt=""><span>Call<span class="nxt">Nxt</span> Verify</span></a>
+<span class="tag">Free scam check</span></header>
+<section><h1>Get your free verify page</h1>
+<p class="lede">List your real Instagram accounts, WhatsApp numbers and payment IDs. Your buyers check any number against it before they pay, and copycats lose their power.</p></section>
+<form class="card" id="f" autocomplete="off">
+<div class="grid2">
+<label for="name">Shop name<input id="name" required placeholder="e.g. Meera Silks"></label>
+<label for="country">Country<select id="country">
+<option value="IN">India</option><option value="ID">Indonesia</option><option value="BR">Brazil</option><option value="NG">Nigeria</option>
+<option value="PH">Philippines</option><option value="PK">Pakistan</option><option value="AE">UAE</option><option value="US">United States</option><option value="XX">Other</option>
+</select></label></div>
+<label for="handles">Instagram accounts <small>Main and backup, comma separated</small><input id="handles" required placeholder="e.g. meerasilks, meerasilks.backup"></label>
+<label for="phones">WhatsApp / phone numbers <small>Comma separated</small><input id="phones" required inputmode="tel" placeholder="e.g. +91 90000 00001"></label>
+<div class="grid2">
+<label for="sites">Website <small>Optional</small><input id="sites" placeholder="e.g. meerasilks.in"></label>
+<label for="payments">Payment IDs <small>UPI / PIX / GCash, optional</small><input id="payments" placeholder="e.g. meerasilks@okaxis"></label></div>
+<label for="rules">What you never do <small>One per line, optional</small><textarea id="rules" placeholder="We never ask for an advance from a number not listed here."></textarea></label>
+<label for="contact">Your email or WhatsApp <small>So we can reach you</small><input id="contact" required></label>
+<div class="row"><button type="submit">Prepare my page</button></div>
+<p class="hint">Nothing is sent until you press one of the send buttons below.</p>
+</form>
+<section class="card" id="ready" hidden>
+<h2>Almost done</h2>
+<ul class="list">
+<li><span class="k">Your page</span><span class="v" id="link"></span></li>
+<li><span class="k">Proof it's yours</span><span class="v"><span>Add <b id="code"></b> to your Instagram bio until we confirm (usually within a day). Or DM <a href="https://instagram.com/call.nxt" target="_blank" rel="noopener">@call.nxt</a> from your shop account.</span></span></li>
+</ul>
+<div class="row"><a class="btn" id="mail" href="#">Send by email</a><a class="btn ghost" id="wa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a></div>
+<h3>Paste these once your page is live</h3>
+<label for="bio">For your bio<textarea id="bio" readonly></textarea></label>
+<label for="pin">Pin this comment on your reels<textarea id="pin" readonly></textarea></label>
+<details><summary>Details we will publish</summary><pre class="code" id="json"></pre></details>
+</section>
+<footer><div>CallNxt Verify is run by SUKUME TECH, New Delhi · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@callnxt.in">hello@callnxt.in</a></div>
+<div>Each shop page lists details the shop gave us after we checked it owns the account. It is not a guarantee about the shop's products.</div></footer>
+</div>
+<script>window.TAKEN = ["meera-silks-demo", "batik-ayu-demo", "moda-lu-demo"];</script>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  const list = (s) => s.split(/[,\n]/).map((x) => x.trim()).filter(Boolean);
+  const code = "CNX-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+  $("#f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let slug = $("#name").value.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "shop";
+    while (window.TAKEN.includes(slug)) slug += "-2";
+    const data = { slug, name: $("#name").value.trim(), demo: false, country: $("#country").value,
+      handles: list($("#handles").value).map((h) => h.replace(/^@/, "").toLowerCase()), phones: list($("#phones").value),
+      sites: list($("#sites").value), payments: list($("#payments").value), rules: $("#rules").value.split("\n").map((x) => x.trim()).filter(Boolean) };
+    const url = "callnxt.in/verify/" + slug;
+    const json = JSON.stringify(data, null, 2);
+    $("#link").textContent = url;
+    $("#code").textContent = code;
+    $("#json").textContent = json;
+    $("#bio").value = "✅ Check our real number before you pay: " + url;
+    $("#pin").value = "⚠️ Our ONLY WhatsApp: " + data.phones.join(", ") + ". Anyone else in the comments is a scam. Check any number at " + url;
+    const msg = "Verify page request\nShop: " + data.name + "\nContact: " + $("#contact").value.trim() + "\nOwnership code in bio: " + code + "\n\n" + json;
+    $("#mail").href = "mailto:hello@callnxt.in?subject=" + encodeURIComponent("Verify page: " + data.name) + "&body=" + encodeURIComponent(msg);
+    $("#wa").href = "https://wa.me/918700876740?text=" + encodeURIComponent(msg);
+    $("#ready").hidden = false;
+    $("#ready").scrollIntoView({ behavior: "smooth" });
+  });
+})();
+</script></body></html>

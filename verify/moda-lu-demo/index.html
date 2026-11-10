@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Is it really Moda Lu? · CallNxt Verify</title>
+<meta name="description" content="Check if a number or account really belongs to Moda Lu before you pay.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/static/icons/favicon-32.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/verify/verify.css">
+</head><body><div class="wrap">
+<header class="top"><a class="brand" href="/verify/"><img src="/media/callnxt-mark.svg" alt=""><span>Call<span class="nxt">Nxt</span> Verify</span></a>
+<span class="tag">Free scam check</span></header>
+<div class="demo">Demo page: this shop and all its numbers are made up, to show how CallNxt Verify works.</div>
+<section><h1>Is it really Moda Lu?</h1>
+<p class="lede">Before you pay, check any number, account or payment ID you were sent. The list below comes from Moda Lu itself.</p></section>
+<section class="card check">
+<form id="f"><label for="q">Paste what you were sent<small>Phone / WhatsApp number, @username, payment ID or website</small></label>
+<div class="row"><input id="q" autocomplete="off" placeholder="e.g. (11) 90000-0001 or @modalu.demo"><button type="submit">Check</button></div></form>
+<div class="row"><button type="button" class="ghost" data-try="(11) 90000-0001">Try an official number</button><button type="button" class="ghost" data-try="@modalu.demos">Try a copycat account</button></div>
+<div id="out" aria-live="polite"></div>
+<p class="hint">The check runs on your phone. What you type is not sent anywhere.</p></section>
+<section class="card"><h2>Moda Lu's official contacts</h2><ul class="list"><li><span class="k">Instagram</span><span class="v"><span><a href="https://instagram.com/modalu.demo" target="_blank" rel="noopener">@modalu.demo</a></span></span></li><li><span class="k">WhatsApp / phone</span><span class="v"><span>(11) 90000-0001</span></span></li><li><span class="k">Website</span><span class="v"><span>moda-lu.example</span></span></li><li><span class="k">Payment ID</span><span class="v"><span>pix@moda-lu.example</span></span></li></ul>
+<p class="hint">Last updated 2026-11-09</p></section>
+<section class="card"><h2>What Moda Lu never does</h2><ul class="rules"><li>Nunca pedimos PIX por mensagem de outra conta.</li><li>We never ask you to pay a PIX key that is not listed here.</li></ul></section>
+<section class="card"><h2>Do you sell on Instagram?</h2><p style="margin:0">Get a free page like this, so your buyers can check your real number before they pay.</p>
+<div><a class="btn ghost" href="/verify/setup/">Get your free page</a></div></section>
+<footer><div>CallNxt Verify is run by SUKUME TECH, New Delhi · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@callnxt.in">hello@callnxt.in</a></div>
+<div>Each shop page lists details the shop gave us after we checked it owns the account. It is not a guarantee about the shop's products.</div></footer>
+</div>
+<script>window.SHOP = {"slug": "moda-lu-demo", "name": "Moda Lu", "demo": true, "country": "BR", "handles": ["modalu.demo"], "phones": ["(11) 90000-0001"], "sites": ["moda-lu.example"], "payments": ["pix@moda-lu.example"], "rules": ["Nunca pedimos PIX por mensagem de outra conta.", "We never ask you to pay a PIX key that is not listed here."], "updated": "2026-11-09"};</script>
+<script src="/verify/verify.js"></script>
+<script>
+(function () {
+  const V = window.CnxVerify, shop = window.SHOP, out = document.getElementById("out"), q = document.getElementById("q");
+  function run() { const v = q.value.trim(); out.innerHTML = v ? V.resultHTML(V.checkShop(v, shop), shop) : ""; }
+  document.getElementById("f").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+  document.querySelectorAll("[data-try]").forEach((b) => b.addEventListener("click", () => { q.value = b.dataset.try; run(); }));
+})();
+</script></body></html>
